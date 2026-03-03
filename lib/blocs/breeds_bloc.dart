@@ -1,3 +1,4 @@
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../services/breed_service.dart';
 import 'breeds_event.dart';
@@ -9,7 +10,7 @@ class BreedsBloc extends Bloc<BreedsEvent, BreedsState> {
   BreedsBloc(this.service) : super(const BreedsState()) {
     on<LoadBreeds>(_onLoadBreeds);
     on<RefreshBreeds>(_onRefreshBreeds);
-    on<LoadMoreBreeds>(_onLoadMoreBreeds);
+    on<LoadMoreBreeds>(_onLoadMoreBreeds, transformer: droppable());
   }
 
   /// Initial load of breeds

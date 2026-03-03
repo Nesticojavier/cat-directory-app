@@ -1,3 +1,5 @@
+import 'package:cat_directory_app/blocs/breeds_detail_bloc.dart';
+import 'package:cat_directory_app/screens/breed_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../blocs/breeds_bloc.dart';
@@ -73,10 +75,16 @@ class _BreedsScreenState extends State<BreedsScreen> {
                           subtitle: Text(breed.country),
                           trailing: const Icon(Icons.arrow_forward_ios),
                           onTap: () {
+                            final breedService = context
+                                .read<BreedsBloc>()
+                                .service;
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => Placeholder(),
+                                builder: (context) => BlocProvider(
+                                  create: (_) => BreedDetailBloc(breedService),
+                                  child: BreedDetailScreen(breed: breed),
+                                ),
                               ),
                             );
                           },

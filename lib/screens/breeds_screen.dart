@@ -62,10 +62,10 @@ class _BreedsScreenState extends State<BreedsScreen> {
                   },
                   child: ListView.builder(
                     controller: _scrollController,
-                    itemCount: state.breeds.length + 1,
+                    itemCount: state.filteredBreeds.length + 1,
                     itemBuilder: (context, index) {
-                      if (index < state.breeds.length) {
-                        final breed = state.breeds[index];
+                      if (index < state.filteredBreeds.length) {
+                        final breed = state.filteredBreeds[index];
                         return ListTile(
                           title: Text(breed.breed),
                           subtitle: Text(breed.country),

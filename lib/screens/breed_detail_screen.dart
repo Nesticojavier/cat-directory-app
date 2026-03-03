@@ -47,7 +47,7 @@ class _BreedDetailScreenState extends State<BreedDetailScreen> {
             BlocBuilder<BreedDetailBloc, BreedDetailState>(
               builder: (context, state) {
                 if (state.isLoading) {
-                  return const CircularProgressIndicator();
+                  return const LinearProgressIndicator();
                 }
 
                 if (state.error != null) {

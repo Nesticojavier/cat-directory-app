@@ -36,6 +36,8 @@ class _BreedsScreenState extends State<BreedsScreen> {
           Padding(
             padding: const EdgeInsets.all(8),
             child: TextField(
+              onTapOutside: (_) =>
+                  FocusManager.instance.primaryFocus?.unfocus(),
               decoration: const InputDecoration(
                 hintText: 'Search breeds...',
                 border: OutlineInputBorder(),
@@ -69,6 +71,15 @@ class _BreedsScreenState extends State<BreedsScreen> {
                         return ListTile(
                           title: Text(breed.breed),
                           subtitle: Text(breed.country),
+                          trailing: const Icon(Icons.arrow_forward_ios),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Placeholder(),
+                              ),
+                            );
+                          },
                         );
 
                         // last item for loading indicator

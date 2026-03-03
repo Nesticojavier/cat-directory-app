@@ -9,7 +9,7 @@ class BreedsBloc extends Bloc<BreedsEvent, BreedsState> {
   BreedsBloc(this.service) : super(const BreedsState()) {
     on<LoadBreeds>(_onLoadBreeds);
     on<RefreshBreeds>(_onRefreshBreeds);
-    // here other event handlles
+    on<LoadMoreBreeds>(_onLoadMoreBreeds);
   }
 
   /// Initial load of breeds
@@ -47,6 +47,37 @@ class BreedsBloc extends Bloc<BreedsEvent, BreedsState> {
       );
     } catch (e) {
       emit(state.copyWith(isLoading: false, error: e.toString()));
+    }
+  }
+
+  /// Load more breeds for pagination
+  Future<void> _onLoadMoreBreeds(
+    LoadMoreBreeds event,
+    Emitter<BreedsState> emit,
+  ) async {
+    if (state.isFetchingMore || state.hasReachedMax) return;
+
+    emit(state.copyWith(isFetchingMore: true));
+
+    try {
+      final nextPage = state.page + 1;
+      final newBreeds = await service.fetchBreeds(nextPage);
+
+      if (newBreeds.isEmpty) {
+        emit(state.copyWith(hasReachedMax: true));
+      } else {
+        final allBreeds = [...state.breeds, ...newBreeds];
+
+        emit(
+          state.copyWith(
+            breeds: allBreeds,
+            isFetchingMore: false,
+            page: nextPage,
+          ),
+        );
+      }
+    } catch (e) {
+      emit(state.copyWith(isFetchingMore: false, error: e.toString()));
     }
   }
 }

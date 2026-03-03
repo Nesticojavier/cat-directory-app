@@ -23,6 +23,11 @@ Esta arquitectura me permitió mantener el código organizado, limpio y escalabl
 - La paginación agrega nuevos elementos a la lista existente usando `nueva_lista = [...lista_vieja, ...nuevos_datos]`.
 - Usé un **droppable** para evitar múltiples fetchs simultáneos en scroll rápido; los eventos de scroll extra son ignorados si hay una petición en curso.
 
+## ✨ Buscador Optimizado con Simulación Realista
+Se implementó un buscador de razas que utiliza un **Debouncer** para optimizar el rendimiento. 
+- **Eficiencia:** Evita disparar procesos de filtrado innecesarios en cada pulsación de tecla.
+- **Simulación de Carga:** Se agregó una ralentización intencional (delay) al buscar localmente para simular el comportamiento de una aplicación real que consulta una base de datos o API externa, permitiendo visualizar los estados de carga y transiciones de la UI de forma natural.
+
 > **Aprendizaje Personal:**  
 > Vengo de usar Provider y GetX, pero nunca había hecho Infinite Scroll con BLoC. Me costó entender los Yields y Emits, así que dediqué tiempo a leer la documentación oficial y recursos adicionales. Al final, logré una implementación funcional, y me pareció interesante cómo la exigencia de organización me ayudó a tener una arquitectura limpia y tipada. Sin duda, este conocimiento suma mucho a mi perfil.
 

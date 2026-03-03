@@ -20,7 +20,6 @@ class BreedsState extends Equatable {
 
   BreedsState copyWith({
     List<BreedModel>? breeds,
-    List<BreedModel>? filteredBreeds,
     bool? isLoading,
     bool? isFetchingMore,
     bool? hasReachedMax,

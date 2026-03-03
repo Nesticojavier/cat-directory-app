@@ -8,6 +8,7 @@ class BreedsBloc extends Bloc<BreedsEvent, BreedsState> {
 
   BreedsBloc(this.service) : super(const BreedsState()) {
     on<LoadBreeds>(_onLoadBreeds);
+    on<RefreshBreeds>(_onRefreshBreeds);
     // here other event handlles
   }
 
@@ -22,6 +23,28 @@ class BreedsBloc extends Bloc<BreedsEvent, BreedsState> {
       final breeds = await service.fetchBreeds(1);
 
       emit(state.copyWith(breeds: breeds, isLoading: false, page: 1));
+    } catch (e) {
+      emit(state.copyWith(isLoading: false, error: e.toString()));
+    }
+  }
+
+  Future<void> _onRefreshBreeds(
+    RefreshBreeds event,
+    Emitter<BreedsState> emit,
+  ) async {
+    emit(state.copyWith(isLoading: true, error: null));
+
+    try {
+      final breeds = await service.fetchBreeds(1);
+
+      emit(
+        state.copyWith(
+          breeds: breeds,
+          isLoading: false,
+          page: 1,
+          hasReachedMax: false,
+        ),
+      );
     } catch (e) {
       emit(state.copyWith(isLoading: false, error: e.toString()));
     }

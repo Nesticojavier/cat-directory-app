@@ -97,11 +97,18 @@ class BreedsBloc extends Bloc<BreedsEvent, BreedsState> {
   }
 
   /// Search breeds by name
-  void _onSearchBreeds(SearchBreeds event, Emitter<BreedsState> emit) {
+  Future<void> _onSearchBreeds(
+    SearchBreeds event,
+    Emitter<BreedsState> emit,
+  ) async {
+    emit(state.copyWith(error: null, isLoading: true));
+
+    // simulate debounce delay
+    await Future.delayed(const Duration(milliseconds: 300));
     final filtered = state.breeds
         .where((b) => b.breed.toLowerCase().contains(event.query.toLowerCase()))
         .toList();
 
-    emit(state.copyWith(filteredBreeds: filtered));
+    emit(state.copyWith(filteredBreeds: filtered, isLoading: false));
   }
 }

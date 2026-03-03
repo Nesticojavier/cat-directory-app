@@ -1,5 +1,7 @@
 import 'package:cat_directory_app/blocs/breeds_detail_bloc.dart';
 import 'package:cat_directory_app/screens/breed_detail_screen.dart';
+import 'package:cat_directory_app/screens/widgets/breed_row_skeleton.dart';
+import 'package:cat_directory_app/screens/widgets/breed_skeleton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../blocs/breeds_bloc.dart';
@@ -53,7 +55,7 @@ class _BreedsScreenState extends State<BreedsScreen> {
             child: BlocBuilder<BreedsBloc, BreedsState>(
               builder: (context, state) {
                 if (state.isLoading) {
-                  return const Center(child: CircularProgressIndicator());
+                  return const BreedSkeleton();
                 }
 
                 if (state.error != null && state.breeds.isEmpty) {
@@ -93,10 +95,7 @@ class _BreedsScreenState extends State<BreedsScreen> {
                         // last item for loading indicator
                       } else {
                         if (state.isFetchingMore) {
-                          return const Padding(
-                            padding: EdgeInsets.all(16),
-                            child: Center(child: CircularProgressIndicator()),
-                          );
+                          return const BreedRowSkeleton();
                         }
                         return const SizedBox();
                       }

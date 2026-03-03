@@ -90,8 +90,4 @@ lib/
 
 ## 🙋‍♂️ Contacto
 
-Si tienes dudas o feedback, puedes contactarme por GitHub o LinkedIn.
-
----
-
-¡Gracias por tu tiempo y por considerar mi candidatura!
+Si tienes dudas o feedback, puedes contactarme por [Linkedin](https://www.linkedin.com/in/nesticojavier/) .

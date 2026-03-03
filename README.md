@@ -49,8 +49,14 @@ Reconozco que es mi primera vez con BLoC, lo que exigió lectura y práctica adi
 **Áreas de mejora:** Si tuviera más tiempo, añadiría:
 - SnackBars para mejorar la comunicación visual de errores y acciones.
 - Mejor manejo de errores con clases envolventes (Result/Either).
-- Más tests unitarios y de integración.
-- Skeleton loaders animados y feedback optimizado en caso de error de red en paginación.
+- Agregaría tests unitarios y de integración.
+- Feedback optimizado en caso de error de red en paginación.
+
+## 📦 Releases
+
+> Puedes descargar y probar fácilmente la aplicación compilada (APK) desde la sección [Releases](https://github.com/Nesticojavier/cat-directory-app/releases) del repositorio en GitHub .  
+> Esto permite probar la app directamente en un dispositivo Android sin necesidad de compilar el código.
+
 
 ## 🚀 ¿Cómo ejecutar la aplicación?
 

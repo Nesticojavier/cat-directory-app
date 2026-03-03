@@ -32,11 +32,11 @@ class BreedService {
 
   String _mapDioError(DioException e) {
     if (e.type == DioExceptionType.connectionTimeout) {
-      return "Tiempo de conexión agotado";
+      return 'Connection timed out';
     }
     if (e.type == DioExceptionType.connectionError) {
-      return "Sin conexión a internet";
+      return 'No internet connection';
     }
-    return "Error inesperado";
+    return 'Unexpected error';
   }
 }
